@@ -169,6 +169,12 @@ static uint32_t getXBPS(FFstrbuf* baseDir, const char* dirname) {
     return result;
 }
 
+static uint32_t getBadPKG(FFstrbuf* baseDir, const char* dirname)
+{
+    uint32_t result = getNumElements(baseDir, dirname, false);
+    return result;
+}
+
 static uint32_t getSnap(FFstrbuf* baseDir) {
     uint32_t result = getNumElements(baseDir, "/snap", true);
 
@@ -539,6 +545,10 @@ static void getPackageCounts(FFstrbuf* baseDir, FFPackagesResult* packageCounts,
     }
     if (!(options->disabled & FF_PACKAGES_FLAG_CARDS_BIT)) {
         packageCounts->cards += getNumElements(baseDir, "/var/lib/pkg/DB", true);
+    }
+
+    if (!(options->disabled & FF_PACKAGES_FLAG_BADPKG_BIT)) {
+        packageCounts->badpkg += getBadPKG(baseDir, "/var/db/badpkg/files");
     }
 }
 

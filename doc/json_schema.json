@@ -3594,7 +3594,8 @@
                                                         "snap",
                                                         "sorcery",
                                                         "winget",
-                                                        "xbps"
+                                                        "xbps",
+                                                        "badpkg"
                                                     ],
                                                     "uniqueItems": true
                                                 }

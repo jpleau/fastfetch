@@ -133,6 +133,7 @@ bool ffPrintPackages(FFPackagesOptions* options) {
         FF_PRINT_PACKAGE(sorcery)
         FF_PRINT_PACKAGE(winget)
         FF_PRINT_PACKAGE(xbps)
+        FF_PRINT_PACKAGE(badpkg)
 
         assert(output.length >= 2); // counts.all > 0 guarantees that at least one package count was printed, which guarantees that ", " was appended at least once
         ffStrbufSubstrBefore(&output, output.length - 1);
@@ -195,6 +196,8 @@ bool ffPrintPackages(FFPackagesOptions* options) {
                 FF_ARG(counts.sorcery, "sorcery"),
                 FF_ARG(counts.winget, "winget"),
                 FF_ARG(counts.xbps, "xbps"),
+                FF_ARG(counts.badpkg, "badpkg"),
+                
             }));
     }
 
@@ -245,6 +248,7 @@ void ffParsePackagesJsonObject(FFPackagesOptions* options, yyjson_val* module) {
                             if (false)
                                 ;
                             FF_TEST_PACKAGE_NAME(BREW)
+                            FF_TEST_PACKAGE_NAME(BADPKG)
                             break;
                         case 'C':
                             if (false)
@@ -373,6 +377,7 @@ void ffGeneratePackagesJsonConfig(FFPackagesOptions* options, yyjson_mut_doc* do
     FF_TEST_PACKAGE_NAME(AM)
     FF_TEST_PACKAGE_NAME(APK)
     FF_TEST_PACKAGE_NAME(APPIMAGE)
+    FF_TEST_PACKAGE_NAME(BADPKG)
     FF_TEST_PACKAGE_NAME(BREW)
     FF_TEST_PACKAGE_NAME(CARDS)
     FF_TEST_PACKAGE_NAME(CHOCO)
@@ -550,5 +555,6 @@ FFModuleBaseInfo ffPackagesModuleInfo = {
         { "Number of sorcery packages", "sorcery" },
         { "Number of winget packages", "winget" },
         { "Number of xbps packages", "xbps" },
+        {"Number of badpkg packages", "badpkg"},
     }))
 };
