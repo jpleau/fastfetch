@@ -548,7 +548,7 @@ static void getPackageCounts(FFstrbuf* baseDir, FFPackagesResult* packageCounts,
     }
 
     if (!(options->disabled & FF_PACKAGES_FLAG_BADPKG_BIT)) {
-        packageCounts->badpkg += getBadPKG(baseDir, "/var/db/badpkg/files");
+        packageCounts->badpkg += getSQLite3Int(baseDir, "/var/db/badpkg/local.db", "SELECT count(*) FROM installed_packages", "badpkg");
     }
 }
 
